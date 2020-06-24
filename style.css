@@ -1,0 +1,40 @@
+#difficultyChooser {
+    text-align: center;
+}
+
+.difficultyBlock {
+    text-align: center;
+    display: inline-block;
+    border: 2px solid black;
+    width: 10rem;
+    height: 4rem;
+    padding: 0.5rem 1rem;
+    margin: 0.5rem;
+    border-radius: 5rem;
+}
+
+.difficultyBlock span {
+    font-size: 1.75rem;
+    font-weight: 500;
+}
+
+.difficultyBlock:hover {
+    cursor: pointer;
+    color: white;
+}
+
+#easy:hover {
+    background-color: #006D77;
+}
+
+#medium:hover {
+    background-color: #D1AC00;
+}
+
+#hard:hover {
+    background-color: #A6191F;
+}
+
+#insane:hover {
+    background-color: #272727;
+}
