@@ -101,7 +101,8 @@
     font-weight: 500;
 }
 
-#analytics p, span {
+#analytics p,
+span {
     display: inline;
 }
 
@@ -142,11 +143,33 @@
     color: white;
 }
 
+#timerDiv {
+    margin-left: -0.35rem;
+    margin-top: 1rem;
+}
+
+#timerDiv p {
+    color: white;
+    font-weight: 500;
+    background-color: #0275d8;
+    padding: .5rem 0 .5rem .75rem;
+    border-bottom-left-radius: 1rem;
+    border-top-left-radius: 1rem;
+}
+
+#timerDiv span {
+    color: white;
+    font-weight: 500;
+    background-color: #0275d8;
+    padding: .5rem .75rem .5rem 0;
+    border-bottom-right-radius: 1rem;
+    border-top-right-radius: 1rem;
+}
+
 @media (max-width: 420px) {
     #analytics {
         width: 100%;
     }
-
     #gameTable {
         margin-top: 1rem;
         width: 100%;
@@ -155,22 +178,18 @@
         width: 23.885%;
         height: 23.885vw;
     }
-    
     .medium {
         width: 15.6%;
         height: 15.6vw;
     }
-    
     .hard {
         width: 19%;
         height: 19vw;
     }
-    
     .insane {
         width: 15.6%;
         height: 15.6vw;
     }
-
     .game-block-content {
         font-size: 2.5rem;
     }

@@ -2,8 +2,8 @@ var difficulties = document.getElementsByClassName('difficultyBlock');
 var root = document.getElementById('main');
 var colorBlocksCount;
 var easy = false;
-var medium = false; 
-var hard = false; 
+var medium = false;
+var hard = false;
 var insane = false;
 var guessedCardColor = '#00C49A';
 var openedCards = [];
@@ -27,10 +27,25 @@ buttonWrapper.setAttribute('id', 'buttonWrapper');
 buttonWrapper.appendChild(playAgainButton);
 
 playAgainButton.addEventListener('click', function playAgain() {
+    easy = false;
+    medium = false;
+    hard = false;
+    insane = false;
+    rightPairs = 0;
+    analytics = {
+        clicks: 0,
+        rightClicks: 0,
+        wrongClicks: 0,
+    };
+    easyDifficultyBlocksValues = [1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8];
+    mediumDifficultyBlocksValues = [1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10, 11, 11, 12, 12];
+    hardDifficultyBlocksValues = [1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10, 11, 11, 12, 12, 13, 13, 14, 14, 15, 15];
+    insaneDifficultyBlocksValues = [1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10, 11, 11, 12, 12, 13, 13, 14, 14, 15, 15, 16, 16, 17, 17, 18, 18];
     gameTable.remove();
     document.getElementById('analytics-header').remove();
     document.getElementById('analytics').remove();
     document.getElementById('difficultyChooser').style.display = 'block';
+    buttonWrapper.style.display = 'none';
 })
 
 /* - Difficulties - */
@@ -110,7 +125,7 @@ function gameProcess() {
     analytics.wrongClicks = 0;
     for (let i = 0; i < gameBlocks.length; i++) {
         gameBlocks[i].addEventListener('click', function showCard() {
-            analytics.clicks ++;
+            analytics.clicks++;
             gameBlocks[i].children[0].style.display = 'table-cell';
             let cardValue = parseInt(gameBlocks[i].children[0].innerText);
             openedCards.push(cardValue);
@@ -194,9 +209,11 @@ function showAnalytics() {
     document.getElementById('main').appendChild(analyticsHeader);
     document.getElementById('main').appendChild(analyticsDiv);
     document.getElementById('main').appendChild(buttonWrapper);
+    buttonWrapper.style.display = 'block';
 }
 
 function win() {
+    clearInterval(timer);
     alert('You\'ve won!');
     setTimeout(() => {
         gameTable.style.display = 'none';
@@ -205,6 +222,7 @@ function win() {
 };
 
 function lose() {
+    clearInterval(timer);
     alert('You\'ve lost!')
     setTimeout(() => {
         gameTable.style.display = 'none';
@@ -217,7 +235,7 @@ function checkIfMatch(array) {
         // If the cards don't match:
         gameCells[cardIndexes[0]].style.display = 'none';
         gameCells[cardIndexes[1]].style.display = 'none';
-        analytics.wrongClicks ++;
+        analytics.wrongClicks++;
 
     } else if (gameBlocks[cardIndexes[0]].classList.contains('guessed') && (!gameBlocks[cardIndexes[1]].classList.contains('guessed'))) {
         //  If any of the cards has already been guessed:
@@ -245,7 +263,7 @@ function checkIfMatch(array) {
         gameBlocks[cardIndexes[0]].classList.add('guessed');
         gameBlocks[cardIndexes[1]].classList.add('guessed');
         rightPairs++;
-        analytics.rightClicks ++;
+        analytics.rightClicks++;
         if (rightPairs == 8) {
             setTimeout(() => {
                 win();
@@ -274,7 +292,7 @@ function generateColorBlocks(randomNumbersArray) {
     if (arrayLength == 16) {
         easy = true;
         newRowSplit = 4;
-    } else if ( arrayLength == 24) {
+    } else if (arrayLength == 24) {
         medium = true;
         newRowSplit = 6;
     } else if (arrayLength == 30) {
@@ -286,7 +304,7 @@ function generateColorBlocks(randomNumbersArray) {
     }
 
     let numOfRows = arrayLength / newRowSplit;
-    for(let j = 0; j < numOfRows; j ++) {
+    for (let j = 0; j < numOfRows; j++) {
 
         // Declare duration variable for as the timer's left time
 
@@ -349,9 +367,9 @@ function getRandomInt(numOfBlocks) {
 // Creating a specific timer according to each difficulty
 // The stopwatch will use the setInterval() function
 
-function createTimer (duration) {
+function createTimer(duration) {
     let timerDiv = document.createElement('div');
-    timerDiv.classList.add('timerDiv');
+    timerDiv.setAttribute('id', 'timerDiv');
     let timerP = document.createElement('p');
     timerP.innerText = 'Time left: ';
     let timerSpan = document.createElement('span');
@@ -359,10 +377,11 @@ function createTimer (duration) {
     timerDiv.appendChild(timerP);
     timerDiv.appendChild(timerSpan);
     gameTable.appendChild(timerDiv);
+    alert('Check the timer!');
     timer = setInterval(() => {
         timerSpan.innerText = duration;
         if (duration) {
-            duration --;
+            duration--;
         } else {
             alert('Time\'s up!');
             clearInterval(timer);
