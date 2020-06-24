@@ -38,3 +38,140 @@
 #insane:hover {
     background-color: #272727;
 }
+
+#gameTable {
+    display: table;
+    width: 40%;
+}
+
+.game-block {
+    background-color: dodgerblue;
+    display: table;
+    text-align: center;
+    border-radius: 10%;
+    margin: 0.5vw!important;
+}
+
+.game-block:hover {
+    cursor: pointer;
+    background-color: #3A0CA3;
+    transition-property: background-color;
+    transition-duration: 0.7s;
+}
+
+.game-block-content {
+    color: white;
+    display: none;
+    vertical-align: middle;
+    font-size: 3.5rem;
+    font-weight: 500;
+}
+
+.easy {
+    width: 22.5%;
+    height: 9vw;
+}
+
+.medium {
+    width: 14.11%;
+    height: 5.6vw;
+}
+
+.hard {
+    width: 17.25%;
+    height: 7vw;
+}
+
+.insane {
+    width: 14.11%;
+    height: 5.6vw;
+}
+
+#analytics {
+    padding: 2rem;
+    background-color: #006D77;
+    border-radius: 5rem;
+    width: 35%;
+    text-align: center;
+}
+
+#analytics div {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+#analytics p, span {
+    display: inline;
+}
+
+#analytics-header {
+    margin: 5vh 0;
+}
+
+#play-again-button {
+    margin-top: .5rem;
+    outline: none;
+    background-color: white;
+    border: 2px solid #0275d8;
+    border-radius: 2rem;
+    padding: .125rem .65rem;
+}
+
+#play-again-button:hover {
+    color: white;
+    background-color: #0275d8;
+}
+
+#main {
+    position: relative;
+}
+
+#buttonWrapper {
+    margin: 0;
+    position: absolute;
+    bottom: -30%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+#mainHeader {
+    background-color: dodgerblue;
+    padding: .5rem;
+    color: white;
+}
+
+@media (max-width: 420px) {
+    #analytics {
+        width: 100%;
+    }
+
+    #gameTable {
+        margin-top: 1rem;
+        width: 100%;
+    }
+    .easy {
+        width: 23.885%;
+        height: 23.885vw;
+    }
+    
+    .medium {
+        width: 15.6%;
+        height: 15.6vw;
+    }
+    
+    .hard {
+        width: 19%;
+        height: 19vw;
+    }
+    
+    .insane {
+        width: 15.6%;
+        height: 15.6vw;
+    }
+
+    .game-block-content {
+        font-size: 2.5rem;
+    }
+}
