@@ -264,11 +264,34 @@ function checkIfMatch(array) {
         gameBlocks[cardIndexes[1]].classList.add('guessed');
         rightPairs++;
         analytics.rightClicks++;
-        if (rightPairs == 8) {
-            setTimeout(() => {
-                win();
-                clearInterval(timer);
-            }, 500);
+        if (easy) {
+            if (rightPairs == 8) {
+                setTimeout(() => {
+                    win();
+                    clearInterval(timer);
+                }, 500);
+            }
+        } else if (medium) {
+            if (rightPairs == 12) {
+                setTimeout(() => {
+                    win();
+                    clearInterval(timer);
+                }, 500);
+            }
+        } else if (hard) {
+            if (rightPairs == 15) {
+                setTimeout(() => {
+                    win();
+                    clearInterval(timer);
+                }, 500);
+            }
+        } else if(insane) {
+            if (rightPairs == 18) {
+                setTimeout(() => {
+                    win();
+                    clearInterval(timer);
+                }, 500);
+            }
         }
     }
     array.pop();
@@ -338,11 +361,11 @@ function generateColorBlocks(randomNumbersArray) {
                 delay = 4000;
             } else if (hard) {
                 colorBlock.classList.add('hard');
-                duration = 60;
+                duration = 75;
                 delay = 5000;
             } else if (insane) {
                 colorBlock.classList.add('insane');
-                duration = 75;
+                duration = 90;
                 delay = 6000;
             }
 
@@ -383,9 +406,11 @@ function createTimer(duration) {
         if (duration) {
             duration--;
         } else {
-            alert('Time\'s up!');
-            clearInterval(timer);
-            lose();
+            setTimeout(() => {
+                alert('Time\'s up!');
+                clearInterval(timer);
+                lose();
+            }, 0);
         }
     }, 1000);
 }
